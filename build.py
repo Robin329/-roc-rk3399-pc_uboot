@@ -38,12 +38,12 @@ def set_env():
     elif arch_value == "arm64" or cross_comp_value == "aarch64-linux-gnu-":
         sys.exit(1)
 
-def build_kernel(command_one):
+def build_uboot(command_one):
     """build uboot
 
        rk3399-roc-pc
     """
-    if "build_kernel" == command_one:
+    if "build_uboot" == command_one:
         os.system("make roc-rk3399-pc_defconfig")
         print("===============" + '\033[1;33m' + "Start Build Uboot" + '\033[0m' + "===============")
         ret = os.system("make -j32  2>&1 | tee build.log")
@@ -71,7 +71,7 @@ def main(argv):
         help()
         sys.exit(1)
     set_env()
-    build_kernel(argv[0])
+    build_uboot(argv[0])
 
 
 if __name__ == '__main__':
